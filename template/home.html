@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid p-0 m-0">
+    <div id="citySlider" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for city in cities %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="position-relative d-flex align-items-center justify-content-center" style="height: 100vh; width: 100vw;">
+                    
+                    <div class="position-absolute top-0 start-0 w-100 h-100" 
+                         style="background-image: url('{{ city.image_url }}'); background-size: cover; background-position: center; filter: brightness(0.3); z-index: 1;">
+                    </div>
+
+                    <a href="{% url 'city_events' city.id %}" class="text-decoration-none" style="z-index: 2; width: 90%;">
+                        <div class="row g-0 align-items-center justify-content-center">
+                            
+                            <div class="col-md-7">
+                                <div class="rounded-5 shadow-2xl border border-white border-opacity-10" 
+                                     style="height: 600px; 
+                                            background-image: url('{{ city.image_url }}'); 
+                                            background-size: cover; 
+                                            background-position: center;
+                                            background-repeat: no-repeat;">
+                                </div>
+                            </div>
+
+                            <div class="col-md-5 p-5 text-end">
+                                <h1 class="text-white fw-bold display-1 mb-3" style="text-shadow: 4px 4px 20px rgba(0,0,0,0.8);">{{ city.name }}</h1>
+                                <p class="text-white fs-3 opacity-90 mb-4" style="text-shadow: 2px 2px 10px rgba(0,0,0,0.8); line-height: 1.4;">
+                                    اكتشف أجمل الفعاليات والأنشطة السياحية في قلب {{ city.name }}
+                                </p>
+                                <div class="btn btn-custom-pink px-5 py-3 rounded-pill fs-5 fw-bold shadow">
+                                    اضغط للاستكشاف
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#citySlider" data-bs-slide="prev" style="z-index: 3; width: 5%;">
+            <span class="carousel-control-prev-icon p-4 bg-white bg-opacity-10 rounded-circle" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#citySlider" data-bs-slide="next" style="z-index: 3; width: 5%;">
+            <span class="carousel-control-next-icon p-4 bg-white bg-opacity-10 rounded-circle" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
+
+<style>
+    body, html { margin: 0; padding: 0; overflow-x: hidden; }
+    .container.main-content { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    .carousel-item { transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1); }
+    .btn-custom-pink { background-color: #d63384; color: white; transition: 0.3s; border: none; }
+    .btn-custom-pink:hover { background-color: #b02a6b; transform: scale(1.1); color: white; }
+    .rounded-5 { transition: transform 0.5s ease; }
+    a:hover .rounded-5 { transform: scale(1.02); }
+</style>
+{% endblock %}

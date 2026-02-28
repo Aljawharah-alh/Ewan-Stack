@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-4 mt-5">
+        <div class="card p-4 rounded-4 shadow border-0" style="background-color: #2b1b4d; color: white;">
+            <h3 class="text-center mb-4 fw-bold">تسجيل الدخول</h3>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">اسم المستخدم</label>
+                    <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">كلمة المرور</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-info w-100 text-white fw-bold py-2 mt-2" style="background-color: #2c8e9d; border: none; border-radius: 10px;">دخول</button>
+            </form>
+            <div class="text-center mt-3 small">
+                ليس لديك حساب؟ <a href="{% url 'signup' %}" class="text-info text-decoration-none">اشترك الآن</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

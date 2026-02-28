@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4 fw-bold">قائمة حجوزاتك</h2>
+
+<div class="row">
+    {% for b in bookings %}
+    <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card bg-dark text-white border-secondary rounded-4 overflow-hidden">
+            <div class="card-body">
+                <h5 class="card-title text-info fw-bold">{{ b.event.name }}</h5>
+                <p class="card-text mb-1">عدد التذاكر: <strong>{{ b.tickets_count }}</strong></p>
+                <p class="card-text mb-1">الموقع: {{ b.event.location_name }}</p>
+                <p class="card-text small text-muted">تاريخ الحجز: {{ b.booking_date|date:"Y-m-d" }}</p>
+            </div>
+            <div class="card-footer bg-black bg-opacity-25 border-0">
+                <span class="badge bg-success">تم التأكيد</span>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info bg-dark text-white border-secondary">
+            لا توجد لديك حجوزات حالياً. <a href="/" class="text-info">استكشف الفعاليات الآن</a>.
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card card-auth shadow-lg p-4">
+            <h2 class="text-center fw-bold mb-4">إنشاء حساب</h2>
+            <form method="post">
+                {% csrf_token %}
+                
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label small">{{ field.label }}</label>
+                        <input type="{{ field.field.widget.input_type }}" 
+                               name="{{ field.name }}" 
+                               class="form-control" 
+                               placeholder="{{ field.label }}">
+                        {% if field.help_text %}
+                            <div class="form-text text-muted" style="font-size: 0.75rem;">{{ field.help_text }}</div>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-custom-pink w-100 py-2 mt-3 fw-bold">اشترك الآن</button>
+            </form>
+            <div class="text-center mt-3">
+                <span class="small">لديك حساب؟</span> <a href="{% url 'login' %}" class="text-info small text-decoration-none">سجل دخولك</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -15,8 +15,8 @@ EWAN is a comprehensive Full-Stack Web Application designed to showcase and mana
 | Category | Technology |
 | :--- | :--- |
 | Backend | Python 3.11, Django Framework (Full-Stack) |
-| Database | SQLite / PostgreSQL (Production ready) |
-| Frontend | HTML5, CSS3, JavaScript (ES6+) |
+| Database | SQL |
+| Frontend | HTML5, CSS3 |
 | Styling | Bootstrap 5, Advanced Custom CSS, Google Fonts |
 | Architecture | MVT (Model-View-Template), Session-based Auth |
 
